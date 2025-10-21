@@ -1,6 +1,6 @@
 # GSWorld
 
-![GSWorld](resources/teaser.mp4)
+![GSWorld](resources/teaser.webp)
 
 ## Assets Download
 Go to the [HuggingFace repo](https://huggingface.co/datasets/GqJiang/gsworld) to download the assets, unzip, and put it under `assets/`.
