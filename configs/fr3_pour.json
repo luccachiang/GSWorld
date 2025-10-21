@@ -1,0 +1,22 @@
+{
+    "models": [
+      {
+        "data_path": "./scene/gs/fr3/fr3.ply",
+        "semantic_labels": "./scene/gs/fr3/fr3_semantics_gs.npy",
+        "transformation": [
+        ]
+      },
+      {
+        "data_path": "./objs/mustard.ply",
+        "semantic_labels": 100,
+        "transformation": [
+        ]
+      },
+      {
+        "data_path": "./objs/bread_slice.ply",
+        "semantic_labels": 111,
+        "transformation": [
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<robot name="xarm6">
+  <disable_collisions link1="link1" link2="link2" reason="Adjacent"/>
+  <disable_collisions link1="link3" link2="link4" reason="Adjacent"/>
+  <disable_collisions link1="world" link2="link1" reason="Adjacent"/>
+  <disable_collisions link1="link4" link2="link5" reason="Adjacent"/>
+  <disable_collisions link1="world" link2="link_base" reason="Adjacent"/>
+  <disable_collisions link1="link_base" link2="link1" reason="Adjacent"/>
+  <disable_collisions link1="link2" link2="link3" reason="Adjacent"/>
+  <disable_collisions link1="link5" link2="link6" reason="Adjacent"/>
+  <disable_collisions link1="world" link2="link2" reason="Never"/>
+  <disable_collisions link1="world" link2="link3" reason="Never"/>
+  <disable_collisions link1="world" link2="link4" reason="Never"/>
+  <disable_collisions link1="world" link2="link5" reason="Never"/>
+  <disable_collisions link1="world" link2="link6" reason="Never"/>
+  <disable_collisions link1="link_base" link2="link2" reason="Never"/>
+  <disable_collisions link1="link1" link2="link3" reason="Never"/>
+  <disable_collisions link1="link2" link2="link6" reason="Never"/>
+  <disable_collisions link1="link3" link2="link5" reason="Never"/>
+  <disable_collisions link1="link3" link2="link6" reason="Never"/>
+  <disable_collisions link1="link4" link2="link6" reason="Never"/>
+</robot>

@@ -1,0 +1,22 @@
+{
+    "models": [
+      {
+        "data_path": "./scene/gs/xarm6/xarm6.ply",
+        "semantic_labels": "./scene/gs/xarm6/xarm6_semantics_gs.npy",
+        "transformation": [
+        ]
+      },
+      {
+        "data_path": "./objs/green_cutting_board.ply",
+        "semantic_labels": 203,
+        "transformation": [
+        ]
+      },
+      {
+        "data_path": "./objs/dtc_spoon.ply",
+        "semantic_labels": 204,
+        "transformation": [
+        ]
+      }
+    ]
+  }

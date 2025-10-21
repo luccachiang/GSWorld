@@ -1,0 +1,16 @@
+{
+    "models": [
+      {
+        "data_path": "./scene/gs/xarm6/xarm6.ply",
+        "semantic_labels": "./scene/gs/xarm6/xarm6_semantics_gs.npy",
+        "transformation": [
+        ]
+      },
+      {
+        "data_path": "./objs/banana.ply",
+        "semantic_labels": 114,
+        "transformation": [
+        ]
+      }
+    ]
+  }

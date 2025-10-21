@@ -1,0 +1,22 @@
+{
+    "models": [
+      {
+        "data_path": "./scene/gs/fr3/fr3.ply",
+        "semantic_labels": "./scene/gs/fr3/fr3_semantics_gs.npy",
+        "transformation": [
+        ]
+      },
+      {
+        "data_path": "./objs/dtc_red_tomato_can.ply",
+        "semantic_labels": 202,
+        "transformation": [
+        ]
+      },
+      {
+        "data_path": "./objs/tomato_soup_can.ply",
+        "semantic_labels": 110,
+        "transformation": [
+        ]
+      }
+    ]
+  }

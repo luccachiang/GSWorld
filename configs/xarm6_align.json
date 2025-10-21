@@ -1,0 +1,22 @@
+{
+    "models": [
+      {
+        "data_path": "./scene/gs/xarm6/xarm6.ply",
+        "semantic_labels": "./scene/gs/xarm6/xarm6_semantics_gs.npy",
+        "transformation": [
+        ]
+      },
+      {
+        "data_path": "./objs/dtc_green_can.ply",
+        "semantic_labels": 201,
+        "transformation": [
+        ]
+      },
+      {
+        "data_path": "./objs/tomato_soup_can.ply",
+        "semantic_labels": 110,
+        "transformation": [
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,10 @@
+{
+    "models": [
+      {
+        "data_path": "./scene/gs/fr3/fr3.ply",
+        "semantic_labels": "./scene/gs/fr3/fr3_semantics_gs.npy",
+        "transformation": [
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,45 @@
+/assets/
+**exp_log/
+**exp_logs/
+**demos/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor settings
+.vscode/
+.idea/
+
+# Logs and cache
+*.log
+*.out
+*.err
+.cache/
+*.tmp
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+
+# Environment variables
+.env.local
+.env.prod
+.env.dev
+
+# Data or large files (optional)
+data/
+outputs/
