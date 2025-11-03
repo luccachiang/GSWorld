@@ -53,3 +53,14 @@ python xarm6/run_with_gs.py -e SpoonOnBoardXArmEnv-v1 -n 1 --vis --scene_cfg_nam
 
 ## Build Your Own Scene with GSWorld
 WIP
+
+## BibTex
+If you find this project helpful, please give us a star and cite:
+```
+@article{jiang2025gsworld,
+title={GSWorld: Closed-Loop Photo-Realistic Simulation Suite for Robotic Manipulation},
+author={Jiang, Guangqi and Chang, Haoran and Qiu, Ri-Zhao and Liang, Yutong and Ji, Mazeyu and Zhu, Jiyue and Dong, Zhao and Zou, Xueyan and Wang, Xiaolong},
+journal={arXiv preprint arXiv:2510.20813},
+year={2025}
+}
+```
