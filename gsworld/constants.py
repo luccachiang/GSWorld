@@ -301,13 +301,19 @@ sim2gs_dtc_green_cutting_board = np.array([
     [0.0,          0.0,         0.0,         1.0]
 ], dtype=np.float32)
 
+# sim2gs_dtc_red_tomato_can = np.array([
+#     [ 0.893085,   -0.00686968,  0.0312505,   0.0118606],
+#     [ 0.0312641,   0.00166396, -0.893109,   -0.26732],
+#     [ 0.00680727,  0.89363,     0.00190322, -0.0275778],
+#     [ 0,           0,           0,           1]
+# ], dtype=np.float32)
+# sim2gs_dtc_red_tomato_can = sim2gs_dtc_red_tomato_can @ cylinder_fix
 sim2gs_dtc_red_tomato_can = np.array([
-    [ 0.893085,   -0.00686968,  0.0312505,   0.0118606],
-    [ 0.0312641,   0.00166396, -0.893109,   -0.26732],
-    [ 0.00680727,  0.89363,     0.00190322, -0.0275778],
-    [ 0,           0,           0,           1]
+    [ 0.85717163,  0.02552206,  0.12962643,  0.01104613],
+    [ 0.0234962,  -0.86683992,  0.01529984, -0.23135898],
+    [ 0.13000891, -0.01160952, -0.85741501, -0.02489009],
+    [ 0.0,         0.0,         0.0,         1.0]
 ], dtype=np.float32)
-sim2gs_dtc_red_tomato_can = sim2gs_dtc_red_tomato_can @ cylinder_fix
 # =============================================
 
 # TODO how to link with ycb model id
@@ -327,7 +333,9 @@ sim2gs_object_transforms = {
     "021_bleach_cleanser": sim2gs_cleanser_trans,
     "056_tennis_ball": sim2gs_tennis_ball_trans,
     "dtc_green_can": sim2gs_dtc_green_can,
+    "dtc_green_can_fr3": sim2gs_dtc_green_can,
     "dtc_red_tomato_can": sim2gs_dtc_red_tomato_can,
+    "dtc_red_tomato_can_fr3": sim2gs_dtc_red_tomato_can,
     "bread_slice": sim2gs_bread_slice_trans,
     "dtc:Kitchen_Spoon_B008H2JLP8_LargeWooden": sim2gs_dtc_spoon,
     "dtc:Cutting_Board_B005CZ90HM_LimeGreen": sim2gs_dtc_green_cutting_board,
@@ -337,6 +345,7 @@ sim2gs_object_transforms = {
 object_offset = {
     # "006_mustard_bottle": [-0.02, 0.01, 0.02],
     "005_tomato_soup_can": [0.0, 0.0, 0.01],
+    "005_tomato_soup_can_fr3": [0.0, 0.0, 0.0],
     "005_tomato_soup_can-0": [0.0, 0.0, 0.04], # stack goal
     "005_tomato_soup_can-1": [0.0, 0.0, 0.01],
     "006_mustard_bottle": [0.0, 0.0, 0.02],
@@ -345,7 +354,7 @@ object_offset = {
     "white_box": [0.0, 0.0, 0.02],
     "plate": [0.0, 0.0, 0.02],
     "snack_box": [0.0, 0.0, 0.035],
-    "spice_rack": [0.0, 0.0, 0.045],
+    "spice_rack": [0.0, 0.0, 0.0],
     "055_baseball": [0.0, 0.0, 0.02],
     "009_gelatin_box": [0.0, 0.0, 0.035],
     "011_banana": [0.0, 0.0, -0.03],
@@ -354,12 +363,15 @@ object_offset = {
     "056_tennis_ball": [0.0, 0.0, 0.02],
     "xarm_arm": [0.0, 0.0, 0.05],
     "dtc_green_can": [-0.04, 0.0, -0.03],
+    "dtc_green_can_fr3": [-0.04, 0.0, 0.0],
     "dtc_red_tomato_can": [0.0, -0.015, 0.04],
+    "dtc_red_tomato_can_fr3": [0.0, 0., 0.0],
     "bread_slice": [0.0, 0.0, 0.04],
     "dtc:Kitchen_Spoon_B008H2JLP8_LargeWooden": [0.0, 0.0, 0.0],
 }
 object_scale = {
     "005_tomato_soup_can": 1,
+    "005_tomato_soup_can_fr3": 1,
     "005_tomato_soup_can-0": 1,
     "005_tomato_soup_can-1": 1,
     "006_mustard_bottle": 1,
@@ -376,7 +388,9 @@ object_scale = {
     "021_bleach_cleanser": 1,
     "056_tennis_ball": 1,
     "dtc_green_can": 1,
+    "dtc_green_can_fr3": 1,
     "dtc_red_tomato_can": 1,
+    "dtc_red_tomato_can_fr3": 1,
     "bread_slice": 0.95,
     "r1table": 1,
     "dtc:Kitchen_Spoon_B008H2JLP8_LargeWooden": 1,
@@ -422,7 +436,9 @@ obj_gs_semantics = {
     "005_tomato_soup_can-0": 110,
     "005_tomato_soup_can-1": 1010,
     "dtc_green_can": 201,
+    "dtc_green_can_fr3": 201,
     "dtc_red_tomato_can": 202,
+    "dtc_red_tomato_can_fr3": 202,
     "dtc:Cutting_Board_B005CZ90HM_LimeGreen": 203,
     "bread_slice": 111,
     "r1table": 112,
