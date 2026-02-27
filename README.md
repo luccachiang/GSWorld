@@ -70,20 +70,28 @@ python franka/run_with_gs.py -e StackFr3Env-v1 -n 1 --vis --scene_cfg_name fr3_s
 ```
 
 ## Build Your Own Scene with GSWorld
+The Real2Sim pipeline (`gsworld/real2sim`) reconstructs a metric-scale 3D Gaussian Splatting (3DGS) scene from real
+images (COLMAP + ArUco scaling), then aligns it to the simulation robot to transfer per-link semantic labels.
+
 ```bash
-# train metric-scale 3dgs
-cd gsworld/real2sim/scripts
-## modify the path inside this bash script and run 
-bash colmap_and_gs.sh
-# sample points from simulation urdf meshes
+# 1) Train a metric-scale 3DGS scene from real images (COLMAP + ArUco scaling)
+#    Expected input: data/<your_capture>/images/*.png (or *.jpg)
+bash gsworld/real2sim/scripts/colmap_and_gs.sh --data_dir data/<your_capture> --gpu 0 --aruco_size 0.100 --export_ply assets/<robot_uid>_assets/<scene_name>.ply
 
-# crop 3dgs recontruction
+# 2) Sample a semantic point cloud from the simulation robot URDF meshes
+python gsworld/real2sim/scripts/uniform_pcd_from_urdf_visual_mesh.py --robot-uid <robot_uid> --filename <robot_name> --save-pcd
 
-# 3d registration with ICP
+# 3) Crop the robot from the reconstructed point cloud (e.g. Supersplat) and save:
+#    assets/<robot_uid>_assets/<scene_name>_cropped.ply
 
-# segment 3dgs
+# 4) Manual alignment + ICP refinement (prints a 4x4 transform matrix)
+python gsworld/real2sim/scripts/open3d_alignment.py --robot-uid <robot_uid> --target <scene_name>_cropped.ply
 
+# 5) Copy the printed matrix into gsworld/constants.py (e.g. sim2gs_<robot>_trans), then segment:
+python gsworld/real2sim/scripts/segment_real_gs.py --robot-uid <robot_uid> --target-name <scene_name>.ply --transform-matrix-name sim2gs_<robot>_trans --bbox-threshold 0.04
 ```
+
+See `gsworld/real2sim/README.md` for a more detailed walkthrough and expected file layout.
 
 ## BibTex
 If you find this project helpful, please give us a star and cite:

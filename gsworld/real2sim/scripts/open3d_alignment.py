@@ -2,6 +2,9 @@ import numpy as np
 import copy
 import open3d as o3d
 import argparse
+from pathlib import Path
+
+from gsworld.constants import ASSET_DIR
 
 def visualize_registration_result(source, target, transformation):
     source_temp = copy.deepcopy(source)
@@ -63,30 +66,46 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Manual ICP registration for point clouds")
     parser.add_argument("--robot-uid", "-r", type=str, required=True,
                         help="Robot UID (e.g., galaxea_r1)")
+    parser.add_argument("--source", "-s", type=str, default=None,
+                        help="Optional URDF point cloud .ply (filename in assets/<robot_uid>_assets/ or an absolute path)")
     parser.add_argument("--target", "-t", type=str, required=True,
-                        help="Target point cloud filename (e.g., cropped_arm.ply)")
+                        help="Target point cloud filename in assets/<robot_uid>_assets/ (or an absolute path)")
     
     args = parser.parse_args()
     
     # Setup paths
-    import os
-    from pathlib import Path
-    script_dir = Path(__file__).parent
-    assets_dir = script_dir.parent.parent / "assets"
+    assets_dir = Path(ASSET_DIR).resolve()
     robot_dir = assets_dir / f"{args.robot_uid}_assets"
+    if not robot_dir.exists():
+        parser.error(f"Robot assets dir not found: {robot_dir}")
     
-    # Auto-find source URDF file (file without date prefix)
-    ply_files = [f for f in robot_dir.glob("*.ply") if "semantic" not in f.name.lower()]
-    urdf_candidates = [f for f in ply_files if not f.stem[0].isdigit()]
+    if args.source is not None:
+        source_path = Path(args.source)
+        if not source_path.exists():
+            source_path = robot_dir / args.source
+        if not source_path.exists():
+            parser.error(f"Source file not found: {source_path}")
+    else:
+        # Auto-find source URDF file (typically the one without a date prefix).
+        ply_files = [f for f in robot_dir.glob("*.ply") if "semantic" not in f.name.lower()]
+        target_name = Path(args.target).name
+        urdf_candidates = [
+            f for f in ply_files
+            if not f.stem[0].isdigit() and f.name != target_name and "cropped" not in f.stem.lower()
+        ]
+        if len(urdf_candidates) != 1:
+            parser.error(
+                f"Expected 1 URDF .ply file in {robot_dir}, found {len(urdf_candidates)}: "
+                f"{[f.name for f in urdf_candidates]}. "
+                "Specify --source to pick one explicitly."
+            )
+        source_path = urdf_candidates[0]
+
+    print(f"Using source file: {source_path}")
     
-    if len(urdf_candidates) != 1:
-        parser.error(f"Expected 1 URDF .ply file in {robot_dir}, found {len(urdf_candidates)}: {[f.name for f in urdf_candidates]}")
-    
-    source_path = urdf_candidates[0]
-    print(f"Auto-found source URDF: {source_path}")
-    
-    # Target file should be in the same robot directory
-    target_path = robot_dir / args.target
+    target_path = Path(args.target)
+    if not target_path.exists():
+        target_path = robot_dir / args.target
     if not target_path.exists():
         parser.error(f"Target file not found: {target_path}")
     
